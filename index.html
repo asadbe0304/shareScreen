@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Screen Record</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        width: 100%;
+        min-height: 100vh;
+      }
+      .btn {
+        border-radius: 10px;
+        background: #000;
+        color: aliceblue;
+        padding: 10px 20px;
+      }
+      video {
+        margin-bottom: 20px;
+        width: 90%;
+        border: 4px solid #000;
+        border-radius: 20px;
+      }
+      h1 {
+        text-align: center;
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Screen Record</h1>
+    <video id="preview" autoplay></video>
+    <button id="start" class="btn">Start</button>
+    <script>
+      const prew = document.querySelector("#preview");
+      const btn = document.querySelector(".btn");
+
+      async function startRecord() {
+        prew.srcObject = await navigator.mediaDevices.getDisplayMedia({
+          video: true,
+          audio: false,
+        });
+      }
+      btn.addEventListener("click", startRecord);
+    </script>
+  </body>
+</html>
